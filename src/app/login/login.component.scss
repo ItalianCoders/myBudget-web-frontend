@@ -1,0 +1,39 @@
+.login-card {
+  max-width: 600px;
+  margin: 100px auto 0;
+  position: relative;
+  border-radius: 20px;
+}
+
+.login-logo {
+  position: absolute;
+  width: 140px;
+  top: 0;
+  left: 50%;
+  transform: translateY(-50%)
+             translateX(-50%);
+  box-shadow: 1px 4px 16px 0px rgba(0, 0, 0, 0.3),
+              0 0 2px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+}
+
+.mat-card-content > .login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  font-size: 18px;
+}
+
+.login-form-field + .login-form-field {
+  margin-top: 16px;
+}
+
+.login-form-field .icon {
+  padding-right: 8px;
+}
+
+.btn-login {
+  padding: 0 46px;
+  line-height: 40px;
+  border-radius: 20px;
+}

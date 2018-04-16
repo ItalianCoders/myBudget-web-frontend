@@ -1,0 +1,39 @@
+<mat-card class="login-card mat-elevation-z20">
+  <img width="200" class="login-logo" alt="myBudget Logo" src="assets/save.svg"/>
+  <mat-card-title>
+    Sign up
+  </mat-card-title>
+
+  <mat-card-content>
+    <form class="login-form" [formGroup]="loginForm" novalidate>
+      <mat-form-field color="primary" class="login-form-field">
+        <input matInput
+              type="text"
+              placeholder="username"
+              formControlName="username">
+        <mat-icon matPrefix class="icon">account_circle</mat-icon>
+        <mat-error *ngIf="loginForm.get('username')?.invalid">
+          Min 6 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="primary" class="login-form-field">
+        <input matInput
+              type="password"
+              placeholder="password"
+              formControlName="password">
+        <mat-icon matPrefix class="icon">lock</mat-icon>
+        <mat-error *ngIf="loginForm.get('password')?.invalid">
+          Min 6 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+        <button type="submit"
+                mat-raised-button color="primary"
+                [disabled]="loginForm.pristine || loginForm.invalid"
+                class="btn btn-login">Log In</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

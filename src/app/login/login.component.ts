@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, SocialUser, LoginResponse } from '../auth.service';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +17,7 @@ import { AuthService, SocialUser, LoginResponse } from '../auth.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public submitting: boolean;
+  public loginError: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -24,6 +27,8 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit() {
     this.createForm();
+
+    this.loginForm.valueChanges.subscribe(res => this.loginError = false);
   }
 
   private createForm() {
@@ -51,18 +56,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.signInWithEmail(username, password)
       .subscribe(
-        res => {
-          console.log(res);
-          this.loginForm.reset();
-          this.submitting = false;
-          this.loginForm.get('username').enable();
-          this.loginForm.get('password').enable();
-        },
-        err => {
-          this.submitting = false;
-          this.loginForm.get('username').enable();
-          this.loginForm.get('password').enable();
-        }
+        res => this.handleLoginSuccess(res),
+        err => this.handleLoginError(err),
       );
   }
 
@@ -76,5 +71,20 @@ export class LoginComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+  }
+
+  private handleLoginSuccess(res: LoginResponse): void {
+    console.log('success');
+    console.log(res);
+    this.loginForm.reset();
+    this.loginForm.enable();
+    this.submitting = false;
+  }
+
+  private handleLoginError(err?: any): void {
+    console.log('error');
+    this.loginForm.enable();
+    this.submitting = false;
+    this.loginError = true;
   }
 }

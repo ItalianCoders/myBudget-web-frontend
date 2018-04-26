@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, SocialUser } from '../auth.service';
+import { AuthService, User } from '../auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +7,13 @@ import { AuthService, SocialUser } from '../auth.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  public user: SocialUser;
+  public user: User;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.user = this.authService.user;
+
+    console.log(this.user);
   }
 }

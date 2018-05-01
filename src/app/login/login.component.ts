@@ -74,15 +74,12 @@ export class LoginComponent implements OnInit {
   }
 
   private handleLoginSuccess(res: LoginResponse): void {
-    console.log('success');
-    console.log(res);
     this.loginForm.reset();
     this.loginForm.enable();
     this.submitting = false;
   }
 
   private handleLoginError(err?: any): void {
-    console.log('error');
     this.loginForm.enable();
     this.submitting = false;
     this.loginError = true;

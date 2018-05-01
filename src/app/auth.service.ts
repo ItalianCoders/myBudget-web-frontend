@@ -4,7 +4,7 @@ import {
   AuthService as SocialService,
   FacebookLoginProvider,
   GoogleLoginProvider,
-  SocialUser
+  SocialUser,
 } from 'angularx-social-login';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -50,7 +50,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: SocialService
+    private authService: SocialService,
   ) {
     this.loggedIn = new BehaviorSubject<boolean>(this.checkLogin());
     this.isLoggedIn.subscribe(
@@ -64,7 +64,7 @@ export class AuthService {
 
   signInWithEmail(
     username: string,
-    password: string
+    password: string,
   ): Observable<LoginResponse> {
     return this.http
       .post<LoginResponse>(`${API_URL}/login`, { username, password })

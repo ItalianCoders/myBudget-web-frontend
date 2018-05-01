@@ -25,7 +25,9 @@
     "@angular/platform-browser-dynamic": "5.2.10",
     "@angular/router": "5.2.10",
     "angularx-social-login": "^1.1.8",
+    "cookieconsent": "^3.0.6",
     "core-js": "^2.4.1",
+    "ngx-cookieconsent": "^1.0.1",
     "rxjs": "^5.5.10",
     "zone.js": "^0.8.26"
   },

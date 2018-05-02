@@ -8,23 +8,13 @@ import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { environment } from '../environments/environment';
 import { CookieLawModule } from 'angular2-cookie-law';
 import { AppRoutingModule } from './app.routing';
-
-import {
-  MatToolbarModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatButtonModule,
-  MatCardModule,
-  MatIconModule,
-  MatProgressSpinnerModule,
-} from '@angular/material';
-
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MaterialModule } from './material.module';
 
 const provideConfig = () => environment.socialConfig;
 
@@ -43,13 +33,7 @@ const provideConfig = () => environment.socialConfig;
     ReactiveFormsModule,
     FlexLayoutModule,
     SocialLoginModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
+    MaterialModule
     CookieLawModule
   ],
   providers: [

@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { environment } from '../environments/environment';
-
+import { CookieLawModule } from 'angular2-cookie-law';
 import { AppRoutingModule } from './app.routing';
 
 import {
@@ -50,6 +50,7 @@ const provideConfig = () => environment.socialConfig;
     MatCardModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    CookieLawModule
   ],
   providers: [
     { provide: AuthServiceConfig, useFactory: provideConfig },

@@ -41,7 +41,7 @@ jobs:
       # Test the source code
       - run:
           name: Testing
-          command: npm run test
+          command: npm run ci-test
 
       # Build the project with AngularCLI
       - run:
@@ -84,7 +84,7 @@ jobs:
       # Test the source code
       - run:
           name: Testing
-          command: npm run test
+          command: npm run ci-test
 
       # Build the project with AngularCLI
       - run:
@@ -131,7 +131,13 @@ workflows:
   build_and_deploy:
     jobs:
       - test
-      - build
+
+      - build:
+          # Deploy only from master branch
+          filters:
+            branches:
+              only: master
+
       - deploy:
           requires:
             - build

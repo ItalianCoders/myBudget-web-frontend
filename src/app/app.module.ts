@@ -33,7 +33,7 @@ const provideConfig = () => environment.socialConfig;
     ReactiveFormsModule,
     FlexLayoutModule,
     SocialLoginModule,
-    MaterialModule
+    MaterialModule,
     CookieLawModule
   ],
   providers: [

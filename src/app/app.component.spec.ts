@@ -1,9 +1,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { MatIconRegistry } from '@angular/material';
-import { AuthService } from './auth.service';
 
-import { AppComponent } from './app.component';
+import { AuthService } from '@core';
+import { AppComponent } from '@app/app.component';
 
 
 describe('AppComponent', () => {

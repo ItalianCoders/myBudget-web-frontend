@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { environment } from '../environments/environment';
-import { CookieLawModule } from 'angular2-cookie-law';
-import { AppRoutingModule } from './app.routing';
-import { AuthGuard } from './auth.guard';
-import { AuthService } from './auth.service';
+
+import { environment } from '@env';
+import { CoreModule, AuthTokenConfig } from '@core';
+import { SharedModule } from '@shared';
+
+import { AppRoutingModule } from '@app/app.routing';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MaterialModule } from './material.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
-const provideConfig = () => environment.socialConfig;
+const authTokenConfig: AuthTokenConfig = {
+  ApiUrl: environment.ApiUrl,
+};
 
 @NgModule({
   declarations: [
@@ -28,19 +28,12 @@ const provideConfig = () => environment.socialConfig;
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
+    CoreModule.forRoot(authTokenConfig),
+    SharedModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
-    SocialLoginModule,
-    MaterialModule,
-    CookieLawModule
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [
-    { provide: AuthServiceConfig, useFactory: provideConfig },
-    AuthService,
-    AuthGuard,
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

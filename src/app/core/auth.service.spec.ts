@@ -6,13 +6,12 @@ import {
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
-  AuthService as SocialService,
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  SocialUser,
-} from 'angularx-social-login';
+  SocialLoginModule,
+  SocialService,
+  ServiceConfigProviders,
+} from './socialModule';
 
-import { AuthService } from './auth.service';
+import { AuthService, AuthConfig } from './auth.service';
 import { promise } from 'protractor';
 
 describe('AuthService', () => {
@@ -39,6 +38,7 @@ describe('AuthService', () => {
       providers: [
         AuthService,
         { provide: SocialService, useClass: SocialServiceMock },
+        { provide: AuthConfig, useValue: '' }
       ],
     });
 

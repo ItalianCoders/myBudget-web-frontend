@@ -2,8 +2,7 @@ import { TestBed, async, fakeAsync, tick, inject } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';

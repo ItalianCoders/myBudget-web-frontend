@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  AuthService as SocialService,
+  SocialService,
   FacebookLoginProvider,
   GoogleLoginProvider,
   SocialUser,
-} from 'angularx-social-login';
+} from './socialModule';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const API_URL = 'https://floating-ravine-25522.herokuapp.com/public/v1';
+export const AuthConfig = new InjectionToken<AuthTokenConfig>('AuthTokenConfig');
 
-export { SocialUser } from 'angularx-social-login';
+export interface AuthTokenConfig {
+  ApiUrl: string;
+}
 
 export interface User {
   alias: string;
@@ -38,7 +38,9 @@ export interface LoginResponse {
   accounts: Array<Accounts>;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   public user: User;
   private loggedIn: BehaviorSubject<boolean>;
@@ -48,6 +50,7 @@ export class AuthService {
   }
 
   constructor(
+    @Inject(AuthConfig) private config: AuthTokenConfig,
     private http: HttpClient,
     private router: Router,
     private authService: SocialService,
@@ -67,7 +70,7 @@ export class AuthService {
     password: string,
   ): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>(`${API_URL}/login`, { username, password })
+      .post<LoginResponse>(`${this.config.ApiUrl}/login`, { username, password })
       .pipe(
         map((res: any) => {
           if (res.accessToken && res.user) {
@@ -78,7 +81,7 @@ export class AuthService {
             return res;
           }
 
-          return Observable.throw('accessToken or user missing.');
+          return throwError('accessToken or user missing.');
         }),
       );
   }

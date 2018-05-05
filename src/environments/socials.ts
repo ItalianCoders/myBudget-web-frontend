@@ -1,14 +1,6 @@
-import { AuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { ServiceConfigProviders } from '../app/core';
 
-export const socialConfig = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(
-      '1079647101570-8l2adk4hsop64bbbtiditmbbmdcvd481.apps.googleusercontent.com')
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('362052714221226')
-  }
-]);
+export const socialConfig: ServiceConfigProviders = {
+  Google: '1079647101570-8l2adk4hsop64bbbtiditmbbmdcvd481.apps.googleusercontent.com',
+  Facebook: '362052714221226',
+};

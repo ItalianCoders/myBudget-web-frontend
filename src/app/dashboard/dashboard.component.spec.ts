@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthService } from '../auth.service';
+import { AuthService } from '@core';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {

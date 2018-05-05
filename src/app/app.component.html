@@ -2,12 +2,14 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span class="title">{{ title }}</span>
-      <span fxFlex="1 1 auto"></span>
+      <span class="space"></span>
       <button *ngIf="isLoggedIn$ | async"
               mat-button
               (click)="logOut()">Log Out</button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <cookie-law></cookie-law>
-  <router-outlet></router-outlet>
+
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

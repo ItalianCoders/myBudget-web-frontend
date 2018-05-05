@@ -3,6 +3,7 @@
 > App running live at [www.mubudget.tk](http://www.mubudget.tk/)
 
 [![CircleCI](https://circleci.com/gh/ItalianCoders/myBudget-web-frontend.svg?style=svg)](https://circleci.com/gh/ItalianCoders/myBudget-web-frontend)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 

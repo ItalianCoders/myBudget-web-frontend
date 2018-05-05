@@ -7,6 +7,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -16,6 +17,24 @@ body {
 
 .mobile {
   display: none;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-justify-content--center {
+  justify-content: center;
+}
+
+.flex-justify-content--space-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-align-items--center {
+  align-items: center;
+  align-content: center;
 }
 
 .mat-button.signin-button,

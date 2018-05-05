@@ -6,8 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, SocialUser, LoginResponse } from '../auth.service';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { AuthService, SocialUser, LoginResponse } from '@core';
 
 @Component({
   selector: 'app-login',

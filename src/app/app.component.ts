@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AuthService, SocialUser } from './auth.service';
-import { Observable } from 'rxjs/Observable';
-import { MatIconRegistry } from '@angular/material/icon';
+import { Observable } from 'rxjs';
+
+import { AuthService, SocialUser } from '@core';
+import { MatIconRegistry } from '@shared';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

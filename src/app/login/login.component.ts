@@ -1,87 +1,89 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, SocialUser, LoginResponse } from '../auth.service';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public loginForm: FormGroup;
-  public submitting: boolean;
-  public loginError: boolean;
+    public loginForm: FormGroup;
+    public submitting: boolean;
+    public loginError: boolean;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService,
-  ) { }
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private authService: AuthService,
+    ) {
+        this.submitting = false;
+        this.loginError = false;
+     }
 
-  public ngOnInit() {
-    this.createForm();
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
 
-    this.loginForm.valueChanges.subscribe(res => this.loginError = false);
-  }
-
-  private createForm() {
-    this.loginForm = this.fb.group({
-      username: ['', [ Validators.required, Validators.minLength(4) ] ],
-      password: ['', [ Validators.required, Validators.minLength(4) ] ],
-    });
-  }
-
-  onRegister(): void {
-    this.router.navigate(['/register']);
-  }
-
-  signInWithEmail(user: FormGroup): void {
-    if (this.loginForm.invalid) {
-      return;
+        this.loginForm.valueChanges.subscribe(res => this.loginError = false);
     }
 
-    const username = user.value.username;
-    const password = user.value.password;
+    onRegister(): void {
+        this.router.navigate(['/register']);
+    }
 
-    this.submitting = true;
-    this.loginForm.get('username').disable();
-    this.loginForm.get('password').disable();
+    signInWithEmail(user: FormGroup): void {
+        if (this.loginForm.invalid) {
+            return;
+        }
 
-    this.authService.signInWithEmail(username, password)
-      .subscribe(
-        res => this.handleLoginSuccess(res),
-        err => this.handleLoginError(err),
-      );
-  }
+        const username = user.value.username;
+        const password = user.value.password;
 
-  signInWithGoogle(): void {
-    this.authService.signInWithGoogle();
-  }
+        this.submitting = true;
+        this.loginForm.get('username').disable();
+        this.loginForm.get('password').disable();
 
-  signInWithFB(): void {
-    this.authService.signInWithFB();
-  }
+        this.authService.signInWithEmail(username, password)
+            .subscribe(
+                res => this.handleLoginSuccess(res),
+                err => this.handleLoginError(err),
+            );
+    }
 
-  signOut(): void {
-    this.authService.signOut();
-  }
+    signInWithGoogle(): void {
+        this.authService.signInWithGoogle();
+    }
 
-  private handleLoginSuccess(res: LoginResponse): void {
-    this.loginForm.reset();
-    this.loginForm.enable();
-    this.submitting = false;
-  }
+    signInWithFB(): void {
+        this.authService.signInWithFB();
+    }
 
-  private handleLoginError(err?: any): void {
-    this.loginForm.enable();
-    this.submitting = false;
-    this.loginError = true;
-  }
+    signOut(): void {
+        this.authService.signOut();
+    }
+
+    private handleLoginSuccess(res: LoginResponse): void {
+        this.loginForm.reset();
+        this.loginForm.enable();
+        this.submitting = false;
+    }
+
+    private handleLoginError(err?: any): void {
+        this.loginForm.enable();
+        this.submitting = false;
+        this.loginError = true;
+    }
+
+    private enableFormControl(name: string, value: boolean) {
+        if (value) {
+            this.loginForm.controls[name].enable();
+        } else {
+            this.loginForm.controls[name].disable();
+        }
+    }
 }

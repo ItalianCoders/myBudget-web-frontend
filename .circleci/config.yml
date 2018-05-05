@@ -91,6 +91,11 @@ jobs:
           name: Build project
           command: npm run build
 
+      # Tag Git version and update CHANGELOG
+      - run:
+          name: Release
+          command: npm run release
+
       # Cache the dist folder for the deploy job
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -124,11 +129,6 @@ jobs:
       - run:
           name: Deploy
           command: aws s3 sync dist/ s3://www.mubudget.tk/ --region eu-west-1 --delete
-
-      # Tag Git version and update CHANGELOG
-      - run:
-        name: Release
-        command: npm run release
 
 workflows:
   version: 2

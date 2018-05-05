@@ -127,8 +127,8 @@ jobs:
 
       # Tag Git version and update CHANGELOG
       - run:
-        name: Release
-        command: npm run release
+          name: Release
+          command: npm run release
 
 workflows:
   version: 2

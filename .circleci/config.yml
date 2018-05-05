@@ -91,16 +91,6 @@ jobs:
           name: Build project
           command: npm run build
 
-      # Tag Git version and update CHANGELOG
-      - run:
-          name: Release
-          command: |
-            git config --global -l
-            git config --global user.email circleci@circleci
-            git config --global user.name CircleCI
-            npm run release
-            git push --follow-tags origin master
-
       # Cache the dist folder for the deploy job
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -145,8 +135,6 @@ workflows:
 
       - build:
           filters:
-            tags:
-              ignore: /^v.*/
             branches:
               only: master
 

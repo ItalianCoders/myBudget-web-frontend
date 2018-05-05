@@ -130,6 +130,7 @@ jobs:
           name: Deploy
           command: aws s3 sync dist/ s3://www.mubudget.tk/ --region eu-west-1 --delete
 
+
 workflows:
   version: 2
   # The build and deploy workflow

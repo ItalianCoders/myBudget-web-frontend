@@ -3,7 +3,7 @@ import {
   FormControl,
   FormGroup,
   FormBuilder,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, SocialUser, LoginResponse } from '@core';
@@ -19,22 +19,21 @@ export class LoginComponent implements OnInit {
   public loginError: boolean;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-  ) { }
-
-  public ngOnInit() {
-    this.createForm();
-
-    this.loginForm.valueChanges.subscribe(res => this.loginError = false);
+    private authService: AuthService
+  ) {
+    this.submitting = false;
+    this.loginError = false;
   }
 
-  private createForm() {
-    this.loginForm = this.fb.group({
-      username: ['', [ Validators.required, Validators.minLength(4) ] ],
-      password: ['', [ Validators.required, Validators.minLength(4) ] ],
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
+
+    this.loginForm.valueChanges.subscribe(res => (this.loginError = false));
   }
 
   onRegister(): void {
@@ -53,10 +52,11 @@ export class LoginComponent implements OnInit {
     this.loginForm.get('username').disable();
     this.loginForm.get('password').disable();
 
-    this.authService.signInWithEmail(username, password)
+    this.authService
+      .signInWithEmail(username, password)
       .subscribe(
         res => this.handleLoginSuccess(res),
-        err => this.handleLoginError(err),
+        err => this.handleLoginError(err)
       );
   }
 
@@ -82,5 +82,13 @@ export class LoginComponent implements OnInit {
     this.loginForm.enable();
     this.submitting = false;
     this.loginError = true;
+  }
+
+  private enableFormControl(name: string, value: boolean) {
+    if (value) {
+      this.loginForm.controls[name].enable();
+    } else {
+      this.loginForm.controls[name].disable();
+    }
   }
 }

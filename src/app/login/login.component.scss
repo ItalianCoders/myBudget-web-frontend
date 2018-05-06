@@ -1,82 +1,166 @@
+$login-width: 500px;
+$login-height: 550px;
+$logo-size: 100px;
+$toolbar-height: 24px;
+
+// Roboto font in all component
 :host {
-  flex: 1;
+  font-family: Roboto;
+}
+.login-page {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-}
-
-.login-card {
-  flex: 1;
-  margin: 0;
+  // align-items: center;
+  justify-content: center;
   position: relative;
-}
-
-.login-logo {
-  position: relative;
-  margin: 0 auto;
-  display: block;
-  width: 100px;
-  box-shadow: 1px 4px 16px 0px rgba(0, 0, 0, 0.3),
-              0 0 2px 0px rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
-}
-
-.mat-card-content > .login-form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 60px;
-  font-size: 18px;
-}
-
-.login-form-field + .login-form-field {
-  margin-top: 16px;
-}
-
-.login-form-field .icon {
-  margin-right: 8px;
-}
-
-.card-actions {
-  margin-top: 20px;
-}
-
-.signin-button +
-.signin-button {
-  margin-left: 20px;
-}
-
-.login-socials {
-  margin-top: 32px;
-}
-
-.spinner {
-  margin-left: 8px;
-}
-
-.login-error {
-  text-align: center;
-  line-height: 30px;
-  margin-bottom: 30px;
-}
-
-@media (min-width: 600px) {
-  :host {
-    display: initial;
-  }
+  overflow-y: auto;
 
   .login-card {
-    max-width: 600px;
-    height: initial;
-    margin: 100px auto 50px;
-    position: relative;
+    width: $login-width;
+    height: $login-height - $toolbar-height;
     border-radius: 20px;
-  }
+    margin-top: (($logo-size)/2 + $toolbar-height);
 
-  .login-logo {
-    position: absolute;
-    width: 140px;
-    top: 0;
-    left: 50%;
-    transform: translateY(-50%)
-               translateX(-50%);
+    .login-logo {
+      margin: 0 auto;
+      display: block;
+      width: $logo-size;
+      box-shadow: 1px 4px 16px 0px rgba(0, 0, 0, 0.3),
+        0 0 2px 0px rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      margin-top: -(24px + ($logo-size)/2);
+    }
+
+    .login-label {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+
+      h2 {
+        margin: 0;
+      }
+    }
+
+    .card-content {
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        // margin-top: 60px;
+        font-size: 18px;
+
+        .login-form-field {
+          margin-top: 16px;
+
+          .icon {
+            margin-right: 8px;
+          }
+        }
+
+        .card-actions {
+          .login-error {
+            text-align: center;
+            line-height: 30px;
+            margin-bottom: 30px;
+          }
+
+          .action-button {
+            text-align: center;
+          }
+
+          .signin-button {
+            margin-left: 20px;
+
+            .spinner {
+              margin-left: 8px;
+            }
+          }
+        }
+
+        .separator {
+          margin: 20px 0;
+          border-top: 1px solid #cccccc;
+          position: relative;
+
+          .separator-text {
+            display: block;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            margin-left: -22px;
+            padding: 0px 10px;
+            background: #ffffff;
+            color: #8a8a8a;
+          }
+        }
+
+        .social-login {
+          margin-top: 5%;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+
+          .google-container {
+            .google-button {
+              /* https://developers.google.com/identity/branding-guidelines */
+              background-repeat: no-repeat;
+              background-size: 18px 18px;
+              background-position: 11px;
+              height: 40px;
+              font-size: 14px;
+              padding: 0px 8px 0px 50px;
+              margin: 5px 0px;
+              background-image: url(/assets/img/btn_google_light.png);
+            }
+          }
+
+          .facebook-container {
+            .facebook-button {
+              /* https://developers.google.com/identity/branding-guidelines */
+              background-repeat: no-repeat;
+              background-size: 18px 18px;
+              background-position: 11px;
+              height: 40px;
+              font-size: 14px;
+              padding: 0px 8px 0px 50px;
+              margin: 5px 0px;
+              background-image: url(/assets/img/facebook-logo.png);
+              background-color: #4267b2; // Blue facebook
+              color: #ffffff;
+            }
+
+            .facebook-button:disabled {
+              background-color: #e0e0e0;
+              color: #a6a6a6;
+            }
+          }
+        }
+      }
+    }
   }
 }
+
+@media (max-width: 500px) {
+  .login-card {
+    margin: 0 10px 0 10px;
+  }
+}
+
+// @media (min-width: 600px) {
+//   .login-card {
+// 	max-width: 600px;
+// 	height: initial;
+// 	margin: 100px auto 0;
+// 	position: relative;
+// 	border-radius: 20px;
+//   }
+
+//   .login-logo {
+// 	position: absolute;
+// 	width: 140px;
+// 	top: 0;
+// 	left: 50%;
+// 	transform: translateY(-50%)
+// 			   translateX(-50%);
+//   }
+// }

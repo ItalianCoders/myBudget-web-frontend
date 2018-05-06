@@ -4,10 +4,18 @@
     "LOGIN": "Log In"
   },
   "LOGIN": {
+    "TITLE": "Log In",
     "GOOGLE": "Sign in with Google",
     "FACEBOOK": "Sign in with Facebook",
     "ERROR": {
       "LOGIN": "Username or password wrong"
     }
+  },
+  "REGISTER": {
+    "TITLE": "Crea il tuo account",
+    "USERNAME_PLACEHOLDER": "Choose your username",
+    "PASSWORD_PLACEHOLDER": "Choose your password",
+    "PASSWORD_CONFIRM_PLACEHOLDER": "Confirm password",
+    "EMAIL_PLACEHOLDER": "Your email address"
   }
 }

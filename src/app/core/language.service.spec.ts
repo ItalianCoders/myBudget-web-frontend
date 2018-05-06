@@ -1,11 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { LanguageService } from './language.service';
+import { TranslateService, TranslateModule, TranslateLoader, TranslateFakeLoader,  } from '@ngx-translate/core';
 
 describe('LanguageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LanguageService]
+      imports: [
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })
+      ]
     });
   });
 

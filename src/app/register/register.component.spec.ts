@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthService } from '@core';
 import { RegisterComponent } from './register.component';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -23,6 +24,7 @@ describe('RegisterComponent', () => {
       imports: [
         ReactiveFormsModule,
         RouterTestingModule,
+        TranslateModule.forRoot(),
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceMock },

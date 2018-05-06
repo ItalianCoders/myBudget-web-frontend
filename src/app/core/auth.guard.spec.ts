@@ -6,6 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
@@ -43,6 +44,7 @@ describe('AuthGuard', () => {
         LoginComponent,
       ],
       imports: [
+        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'login', component: LoginComponent },

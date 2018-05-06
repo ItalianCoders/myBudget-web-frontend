@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SocialService } from './socialModule';
 
 import { AuthService, AuthConfig } from './auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -41,6 +42,7 @@ describe('AuthService', () => {
       ],
       imports: [
         HttpClientTestingModule,
+        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'login', component: LoginComponent },

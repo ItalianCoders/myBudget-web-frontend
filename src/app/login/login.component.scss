@@ -53,7 +53,52 @@
       background: #FFFFFF;
       color: #8a8a8a;
     }
-}
+  }
+
+  .social-login {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .social-button {
+      height: 40px;
+      width: 230px;
+    }
+
+    .google-button {
+      margin-bottom: 10px;
+    }
+
+    .facebook-button {
+      // Blue facebook
+      background-color: #4267B2;
+    }
+
+    .container {
+      display: flex;
+
+      .logo {
+        padding-left: 8px;
+        margin-right: 24px;
+
+        img {
+          width: 18px;
+          height: 18px;
+          vertical-align: middle;
+        }
+      }
+
+      .label {
+        font-family: 'Roboto-Medium', 'Helvetica Neue', 'sans-serif';
+        font-size: 14px;
+        margin-right: 8px;
+      }
+
+      .label-facebook {
+        color: #FFFFFF;
+      }
+    }
+  }
 }
 
 .signin-button +

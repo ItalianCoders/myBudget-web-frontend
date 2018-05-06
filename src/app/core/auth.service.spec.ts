@@ -1,18 +1,10 @@
-import { TestBed, inject, async, fakeAsync, tick } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  SocialLoginModule,
-  SocialService,
-  ServiceConfigProviders,
-} from './socialModule';
+import { SocialService } from './socialModule';
 
 import { AuthService, AuthConfig } from './auth.service';
-import { promise } from 'protractor';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -29,11 +21,31 @@ describe('AuthService', () => {
     }
   }
 
+  @Component({
+    selector: 'app-login',
+    template: `<div>Login</div>`,
+  })
+  class LoginComponent {}
+
+  @Component({
+    selector: 'app-dashboard',
+    template: `<div>Dashboard</div>`,
+  })
+  class DashboardComponent {}
+
   beforeEach(() => {
     TestBed.configureTestingModule({
+      declarations: [
+        LoginComponent,
+        DashboardComponent,
+      ],
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+          { path: 'login', component: LoginComponent },
+          { path: 'dashboard', component: DashboardComponent },
+        ]),
       ],
       providers: [
         AuthService,

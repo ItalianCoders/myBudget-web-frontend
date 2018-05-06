@@ -6,12 +6,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService, AuthConfig, AuthTokenConfig } from './auth.service';
-import {
-  SocialLoginModule,
-  SocialService,
-  ServiceConfigProviders,
-  ConfigToken,
-} from './socialModule';
+import { SocialLoginModule, SocialService } from './socialModule';
 import { environment } from '@env';
 
 @NgModule({

@@ -37,15 +37,28 @@
 
 .card-actions {
   margin-top: 20px;
+
+  .separator {
+    margin: 20px 0;
+    border-top: 1px solid #CCCCCC;
+    position: relative;
+
+    .separator-text {
+      display: block;
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      margin-left: -22px;
+      padding: 0px 10px;
+      background: #FFFFFF;
+      color: #8a8a8a;
+    }
+}
 }
 
 .signin-button +
 .signin-button {
   margin-left: 20px;
-}
-
-.login-socials {
-  margin-top: 32px;
 }
 
 .spinner {

@@ -1,19 +1,16 @@
 <mat-card class="login-card mat-elevation-z20">
+
   <img width="200" class="login-logo" alt="myBudget Logo" src="assets/save.svg"/>
+
   <mat-card-title>
     <span class="mobile">Log in</span>
   </mat-card-title>
 
   <mat-card-content>
-    <form class="login-form"
-          [formGroup]="loginForm"
-          novalidate
-          (ngSubmit)="signInWithEmail(loginForm)">
+    <form class="login-form" [formGroup]="loginForm" novalidate (ngSubmit)="signInWithEmail(loginForm)">
+
       <mat-form-field color="primary" class="login-form-field">
-        <input matInput
-              type="text"
-              placeholder="username"
-              formControlName="username">
+        <input matInput type="text" placeholder="username" formControlName="username">
         <mat-icon matPrefix class="icon">account_circle</mat-icon>
         <mat-error *ngIf="loginForm.get('username')?.invalid && !!loginForm.get('username').value">
           Min 4 characters
@@ -21,10 +18,7 @@
       </mat-form-field>
 
       <mat-form-field color="primary" class="login-form-field">
-        <input matInput
-              type="password"
-              placeholder="password"
-              formControlName="password">
+        <input matInput type="password" placeholder="password" formControlName="password">
         <mat-icon matPrefix class="icon">lock</mat-icon>
         <mat-error *ngIf="loginForm.get('password')?.invalid && !!loginForm.get('password').value">
           Min 4 characters
@@ -33,24 +27,22 @@
 
       <mat-card-actions class="card-actions">
         <mat-error *ngIf="loginError" class="login-error">
-          Username or password wrong
+          {{ 'LOGIN.ERROR.LOGIN' | translate }}
         </mat-error>
 
         <div class="flex-row flex-justify-content--center flex-align-items--center">
-          <button type="button"
-                  mat-raised-button color="accent"
-                  class="btn signin-button"
-                  (click)="onRegister()">Register</button>
+          <button type="button" mat-raised-button color="accent" class="btn signin-button" (click)="onRegister()">
+            {{ 'BUTTONS.REGISTER' | translate }}
+          </button>
 
-          <button type="submit"
-                  mat-raised-button color="primary"
-                  [disabled]="loginForm.pristine || loginForm.invalid || submitting"
-                  class="btn signin-button">
-            <span *ngIf="!submitting">Log In</span>
-            <mat-spinner *ngIf="submitting"
-                         diameter="20"></mat-spinner>
+          <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.pristine || loginForm.invalid || submitting" class="btn signin-button">
+            <span *ngIf="!submitting">
+              {{ 'BUTTONS.LOGIN' | translate }}
+            </span>
+            <mat-spinner *ngIf="submitting" diameter="20"></mat-spinner>
           </button>
         </div>
+
         <!-- SOCIAL LOGIN SEPARATOR -->
         <div class="separator">
           <span class="separator-text">OR</span>
@@ -65,24 +57,30 @@
                 <img src="assets/img/btn_google_light.png" alt="Google logo">
               </div>
               <div class="label">
-                <span>Accedi con Google</span>
+                <span>
+                  {{ 'LOGIN.GOOGLE' | translate }}
+                </span>
               </div>
             </div>
           </button>
 
           <!-- FACEBOOK -->
           <button mat-raised-button class="social-button facebook-button" (click)="signInWithFB()">
-              <div class="container">
-                <div class="logo">
-                  <img src="assets/img/facebook-logo.png" alt="Facebook logo">
-                </div>
-                <div class="label label-facebook">
-                  <span>Accedi con Facebook</span>
-                </div>
+            <div class="container">
+              <div class="logo">
+                <img src="assets/img/facebook-logo.png" alt="Facebook logo">
               </div>
-            </button>
+              <div class="label label-facebook">
+                <span>
+                  {{ 'LOGIN.FACEBOOK' | translate }}
+                </span>
+              </div>
+            </div>
+          </button>
         </div>
+
       </mat-card-actions>
+
     </form>
   </mat-card-content>
 </mat-card>

@@ -1,0 +1,13 @@
+{
+  "BUTTONS": {
+    "REGISTER": "Registrati",
+    "LOGIN": "Accedi"
+  },
+  "LOGIN": {
+    "GOOGLE": "Accedi con Google",
+    "FACEBOOK": "Accedi con Facebook",
+    "ERROR": {
+      "LOGIN": "Nome utente o password errati"
+    }
+  }
+}

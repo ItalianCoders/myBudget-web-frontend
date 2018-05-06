@@ -1,0 +1,13 @@
+{
+  "BUTTONS": {
+    "REGISTER": "Register",
+    "LOGIN": "Log In"
+  },
+  "LOGIN": {
+    "GOOGLE": "Sign in with Google",
+    "FACEBOOK": "Sign in with Facebook",
+    "ERROR": {
+      "LOGIN": "Username or password wrong"
+    }
+  }
+}

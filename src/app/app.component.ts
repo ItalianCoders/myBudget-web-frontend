@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '@core';
+import { LanguageService } from '@app/core/language.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-  ) { }
+    private languageService: LanguageService
+  ) {
+    this.languageService.init();
+  }
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn;

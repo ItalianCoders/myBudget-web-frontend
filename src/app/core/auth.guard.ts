@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(): Observable<boolean> {
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.isLoggedIn
       .pipe(
         take(1),

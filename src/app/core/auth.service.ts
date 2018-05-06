@@ -6,7 +6,7 @@ import {
   GoogleLoginProvider,
   SocialUser,
 } from './socialModule';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -38,6 +38,12 @@ export interface LoginResponse {
   accounts: Array<Accounts>;
 }
 
+export enum SocialType {
+  None = 0,
+  Facebook,
+  Google,
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -56,8 +62,17 @@ export class AuthService {
     private authService: SocialService,
   ) {
     this.loggedIn = new BehaviorSubject<boolean>(this.checkLogin());
-    this.isLoggedIn.subscribe(
-      res => this.router.navigate(['/'], { replaceUrl: true }));
+    this.isLoggedIn
+      .subscribe((res: boolean) => {
+        if (res) {
+          this.user = null;
+          this.user = JSON.parse(localStorage.getItem('user')).user;
+          this.router.navigate(['dashboard']);
+          return;
+        }
+
+        this.router.navigate(['login']);
+      });
   }
 
   checkLogin(): boolean {
@@ -90,24 +105,43 @@ export class AuthService {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((res: SocialUser) => {
         console.log(res);
+        this.signIn(res, SocialType.Google);
       });
   }
 
   signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then((res: SocialUser) => {
+        console.log(res);
+        this.signIn(res, SocialType.Facebook);
+      });
   }
 
   signOut(): void {
-    this.authService.signOut()
-      .then(() => {
-        localStorage.clear();
-        this.user = null;
-        this.loggedIn.next(false);
-      })
-      .catch(err => {
-        localStorage.clear();
-        this.user = null;
-        this.loggedIn.next(false);
+    this.authService.signOut();
+
+    localStorage.clear();
+    this.user = null;
+    this.loggedIn.next(false);
+  }
+
+  private signIn(socialUser, socialType: SocialType) {
+    const payload = {
+      username: socialType === SocialType.Facebook ? socialUser.id : socialUser.email,
+      password: '*',
+      socialAuthenticationType: socialType,
+      socialAccessToken: socialUser.authToken,
+    };
+
+    return this.http
+      .post<LoginResponse>(`${this.config.ApiUrl}/login`, payload)
+      .subscribe(res => {
+        if (res.accessToken && res.user) {
+          this.store('app_token', res.accessToken);
+          this.store('user', res.user);
+          this.user = res.user;
+          this.loggedIn.next(true);
+        }
       });
   }
 

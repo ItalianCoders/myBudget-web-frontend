@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
-import { AuthService, SocialUser } from '@core';
+import { AuthService } from '@core';
 import { MatIconRegistry } from '@shared';
 
 @Component({

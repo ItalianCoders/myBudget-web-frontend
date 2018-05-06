@@ -166,7 +166,7 @@ export class SocialService {
       },
       {
         id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider(authServiceConfig.Google)
+        provider: new FacebookLoginProvider(authServiceConfig.Facebook)
       }
     ]);
   }

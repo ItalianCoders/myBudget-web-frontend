@@ -1,16 +1,13 @@
 <mat-card class="register-card mat-elevation-z20">
   <img width="200" class="register-logo" alt="myBudget Logo" src="assets/save.svg"/>
   <mat-card-title>
-    Register
+    {{ 'REGISTER.TITLE' | translate }}
   </mat-card-title>
 
   <mat-card-content>
     <form class="register-form" [formGroup]="registerForm" novalidate (ngSubmit)="signInWithEmail(registerForm)">
       <mat-form-field color="primary" class="register-form-field">
-        <input matInput
-              type="text"
-              placeholder="username"
-              formControlName="username">
+        <input matInput type="text" placeholder="{{ 'REGISTER.USERNAME_PLACEHOLDER' | translate }}" formControlName="username">
         <mat-icon matPrefix class="icon">account_circle</mat-icon>
         <mat-error *ngIf="registerForm.get('username')?.invalid">
           Min 4 characters
@@ -18,10 +15,7 @@
       </mat-form-field>
 
       <mat-form-field color="primary" class="register-form-field">
-        <input matInput
-              type="password"
-              placeholder="password"
-              formControlName="password">
+        <input matInput type="password" placeholder="{{ 'REGISTER.PASSWORD_PLACEHOLDER' | translate }}" formControlName="password">
         <mat-icon matPrefix class="icon">lock</mat-icon>
         <mat-error *ngIf="registerForm.get('password')?.invalid">
           Min 4 characters
@@ -29,10 +23,7 @@
       </mat-form-field>
 
       <mat-form-field color="primary" class="register-form-field">
-        <input matInput
-              type="password"
-              placeholder="confirm password"
-              formControlName="passwordConfirm">
+        <input matInput type="password" placeholder="{{ 'REGISTER.PASSWORD_CONFIRM_PLACEHOLDER' | translate }}" formControlName="passwordConfirm">
         <mat-icon matPrefix class="icon">lock</mat-icon>
         <mat-error *ngIf="registerForm.get('passwordConfirm')?.invalid">
           Min 4 characters
@@ -40,10 +31,7 @@
       </mat-form-field>
 
       <mat-form-field color="primary" class="register-form-field">
-        <input matInput
-              type="email"
-              placeholder="email address"
-              formControlName="email">
+        <input matInput type="email" placeholder="{{ 'REGISTER.EMAIL_PLACEHOLDER' | translate }}" formControlName="email">
         <mat-icon matPrefix class="icon">mail</mat-icon>
         <mat-error *ngIf="registerForm.get('email')?.invalid">
           Enter a valid email address
@@ -52,15 +40,13 @@
 
       <mat-card-actions class="card-actions">
         <div class="flex-row flex-justify-content--center flex-align-items--center">
-          <button type="button"
-                  mat-raised-button color="accent"
-                  class="btn signin-button"
-                  (click)="onSignIn()">Sign In</button>
+          <button type="button" mat-raised-button color="accent" class="btn signin-button" (click)="onSignIn()">
+            {{ 'BUTTONS.LOGIN' | translate }}
+          </button>
 
-          <button type="submit"
-                  mat-raised-button color="primary"
-                  [disabled]="registerForm.pristine || registerForm.invalid"
-                  class="btn signin-button">Register</button>
+          <button type="submit" mat-raised-button color="primary" [disabled]="registerForm.pristine || registerForm.invalid" class="btn signin-button">
+            {{ 'BUTTONS.REGISTER' | translate }}
+          </button>
         </div>
       </mat-card-actions>
     </form>

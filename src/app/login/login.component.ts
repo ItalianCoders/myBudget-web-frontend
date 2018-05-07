@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-    private languageService: LanguageService
+    private authService: AuthService
   ) { }
 
   public ngOnInit() {
@@ -72,15 +71,6 @@ export class LoginComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
-  }
-
-  changeLang() {
-    const lang = this.languageService.getLanguage();
-    if (lang === 'it') {
-      this.languageService.setLanguage('en');
-    } else {
-      this.languageService.setLanguage('it');
-    }
   }
 
   private handleLoginSuccess(res: LoginResponse): void {

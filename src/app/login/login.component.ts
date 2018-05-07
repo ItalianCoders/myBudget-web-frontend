@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, SocialUser, LoginResponse } from '@core';
+import { LanguageService } from '@app/core/language.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
+    private languageService: LanguageService
   ) { }
 
   public ngOnInit() {
@@ -70,6 +72,15 @@ export class LoginComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+  }
+
+  changeLang() {
+    const lang = this.languageService.getLanguage();
+    if (lang === 'it') {
+      this.languageService.setLanguage('en');
+    } else {
+      this.languageService.setLanguage('it');
+    }
   }
 
   private handleLoginSuccess(res: LoginResponse): void {

@@ -24,9 +24,10 @@ export interface User {
   username: string;
 }
 
-export interface Accounts {
+export interface Account {
   id: string;
   name: string;
+  description: string;
   numberOfUsers: number;
   status: number;
 }
@@ -35,7 +36,7 @@ export interface LoginResponse {
   accessToken: string;
   refreshToken: string;
   user: User;
-  accounts: Array<Accounts>;
+  accounts: Array<Account>;
 }
 
 export enum SocialType {
@@ -85,7 +86,7 @@ export class AuthService {
     password: string,
   ): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>(`${this.config.ApiUrl}/login`, { username, password })
+      .post<LoginResponse>(`${this.config.ApiUrl}/public/v1/login`, { username, password })
       .pipe(
         map((res: any) => {
           if (res.accessToken && res.user) {
@@ -134,7 +135,7 @@ export class AuthService {
     };
 
     return this.http
-      .post<LoginResponse>(`${this.config.ApiUrl}/login`, payload)
+      .post<LoginResponse>(`${this.config.ApiUrl}/public/v1/login`, payload)
       .subscribe(res => {
         if (res.accessToken && res.user) {
           this.store('app_token', res.accessToken);

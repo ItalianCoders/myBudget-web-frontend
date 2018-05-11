@@ -10,7 +10,6 @@ export class TokenInterceptorService {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger;
     const token = localStorage.getItem('app_token');
     if (!request.url.startsWith(this.config.ApiUrl)
       || (request.url.startsWith(this.config.ApiUrl + '/public'))

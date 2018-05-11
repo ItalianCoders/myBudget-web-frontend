@@ -16,7 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
-import {TokenInterceptorService} from '@app/core/token-interceptor-service.service';
+import {TokenInterceptorService} from '@app/core/token-interceptor.service';
 
 const authTokenConfig: AuthTokenConfig = {
   ApiUrl: environment.ApiUrl,

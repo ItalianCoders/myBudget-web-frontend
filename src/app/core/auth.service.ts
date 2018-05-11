@@ -51,7 +51,7 @@ export enum SocialType {
 export class AuthService {
   public user: User;
   private loggedIn: BehaviorSubject<boolean>;
-
+  public token: string;
   public get isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
@@ -68,12 +68,21 @@ export class AuthService {
         if (res) {
           this.user = null;
           this.user = JSON.parse(localStorage.getItem('user')).user;
+          this.token = JSON.parse(localStorage.getItem('app_token'))['app_token'];
           this.router.navigate(['dashboard']);
           return;
         }
 
         this.router.navigate(['login']);
       });
+  }
+  public getConfig(): AuthTokenConfig {
+    return this.config;
+  }
+
+  public isWhitelisted(url: string): boolean {
+    return (!url.startsWith(this.config.ApiUrl)
+      || (url.startsWith(this.config.ApiUrl + '/public')));
   }
 
   checkLogin(): boolean {

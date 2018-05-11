@@ -1,23 +1,21 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {AuthConfig, AuthTokenConfig} from '@core';
+import {AuthConfig, AuthService, AuthTokenConfig} from '@core';
 
 @Injectable()
 export class TokenInterceptorService {
 
-  constructor(@Inject(AuthConfig) private config: AuthTokenConfig) {
+  constructor(private authService: AuthService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('app_token');
-    if (!request.url.startsWith(this.config.ApiUrl)
-      || (request.url.startsWith(this.config.ApiUrl + '/public'))
-      || !token) {
+    if (!this.authService.isWhitelisted(request.url)) {
       return next.handle(request);
     }
     const clonedRequest = request.clone(
-      {headers: request.headers.set('x-auth-token', JSON.parse(token)['app_token'])});
+      {headers: request.headers.set('x-auth-token', this.authService.token)});
     return next.handle(clonedRequest);
   }
 

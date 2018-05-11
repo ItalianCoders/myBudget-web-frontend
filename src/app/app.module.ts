@@ -15,8 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
-import {TokenInterceptorService} from '@app/core/token-interceptor.service';
+import { HttpClient } from '@angular/common/http';
 
 const authTokenConfig: AuthTokenConfig = {
   ApiUrl: environment.ApiUrl,
@@ -49,13 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

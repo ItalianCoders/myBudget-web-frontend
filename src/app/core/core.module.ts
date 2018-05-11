@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -8,6 +8,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthService, AuthConfig, AuthTokenConfig } from './auth.service';
 import { SocialLoginModule, SocialService } from './socialModule';
 import { environment } from '@env';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   imports: [
@@ -39,7 +40,12 @@ export class CoreModule {
         AuthService,
         AuthGuard,
         SocialService,
-        { provide: AuthConfig, useValue: config }
+        { provide: AuthConfig, useValue: config },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: TokenInterceptorService,
+          multi: true,
+        }
       ],
     };
   }

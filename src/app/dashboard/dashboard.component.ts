@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
       .subscribe( response => {
         this.account = response;
       }, error => {
-        // manage error;
+        this.authService.signOut();
       });
   }
 }

@@ -9,6 +9,7 @@ import { AuthService, AuthConfig, AuthTokenConfig } from './auth.service';
 import { SocialLoginModule, SocialService } from './socialModule';
 import { environment } from '@env';
 import { TokenInterceptorService } from './token-interceptor.service';
+import {AccountService} from './service/account/account.service';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ export class CoreModule {
       providers: [
         AuthService,
         AuthGuard,
+        AccountService,
         SocialService,
         { provide: AuthConfig, useValue: config },
         {

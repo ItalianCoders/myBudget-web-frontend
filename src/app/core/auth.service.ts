@@ -105,6 +105,7 @@ export class AuthService {
           if (res.accessToken && res.user) {
             this.store('app_token', res.accessToken);
             this.store('user', res.user);
+            this.store('currentAccount', res.accounts[0].id);
             this.user = res.user;
             this.currentAccount = res.accounts[0].id;
             this.loggedIn.next(true);

@@ -67,10 +67,11 @@ export class AuthService {
       .subscribe((res: boolean) => {
         if (res) {
           this.user = null;
+          this.token = null;
           this.user = JSON.parse(localStorage.getItem('user')).user;
           this.token = JSON.parse(localStorage.getItem('app_token'))['app_token'];
-          this.router.navigate(['dashboard']);
-          return;
+
+          return this.router.navigate(['dashboard']);
         }
 
         this.router.navigate(['login']);
@@ -81,8 +82,9 @@ export class AuthService {
   }
 
   public isWhitelisted(url: string): boolean {
-    return (!url.startsWith(this.config.ApiUrl)
-      || (url.startsWith(this.config.ApiUrl + '/public')));
+    return !!this.token &&
+        url.startsWith(this.config.ApiUrl) &&
+        !url.startsWith(this.config.ApiUrl + '/public');
   }
 
   checkLogin(): boolean {

@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocialService } from './socialModule';
 
-import { AuthService, AuthConfig } from './auth.service';
+import { AuthService, AuthConfig, AuthTokenConfig } from './auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 describe('AuthService', () => {
@@ -34,6 +34,10 @@ describe('AuthService', () => {
   })
   class DashboardComponent {}
 
+  const authTokenConfig: AuthTokenConfig = {
+    ApiUrl: 'test-api-url',
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -52,7 +56,7 @@ describe('AuthService', () => {
       providers: [
         AuthService,
         { provide: SocialService, useClass: SocialServiceMock },
-        { provide: AuthConfig, useValue: '' }
+        { provide: AuthConfig, useValue: authTokenConfig }
       ],
     });
 
@@ -151,4 +155,37 @@ describe('AuthService', () => {
     expect(localStorage.clear).toHaveBeenCalled();
     expect(service.user).toBeNull();
   }));
+
+  it('getConfig should return a configuration object', () => {
+    const response = service.getConfig();
+
+    expect(response).toBeDefined();
+    expect(response.ApiUrl).toBeDefined();
+    expect(response.ApiUrl).toEqual('test-api-url');
+  });
+
+  describe('isWhitelisted', () => {
+    it('should return `false` if the user is not authenticated', () => {
+      service.token = null;
+      const response = service.isWhitelisted('test-api-url');
+
+      expect(response).toEqual(false);
+    });
+
+    it('should return `true` if the user is authenticated and ' +
+        'the url is whitelisted', () => {
+      service.token = 'test-user-token';
+      const response = service.isWhitelisted('test-api-url');
+
+      expect(response).toEqual(true);
+    });
+
+    it('should return `false` if the user is authenticated but ' +
+        'the url is public', () => {
+      service.token = 'test-user-token';
+      const response = service.isWhitelisted('test-api-url/public');
+
+      expect(response).toEqual(false);
+    });
+  });
 });

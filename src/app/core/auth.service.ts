@@ -52,6 +52,7 @@ export class AuthService {
   public user: User;
   private loggedIn: BehaviorSubject<boolean>;
   public token: string;
+  public currentAccount: string;
   public get isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
@@ -68,9 +69,10 @@ export class AuthService {
         if (res) {
           this.user = null;
           this.token = null;
+          this.currentAccount = null;
           this.user = JSON.parse(localStorage.getItem('user')).user;
           this.token = JSON.parse(localStorage.getItem('app_token'))['app_token'];
-
+          this.currentAccount = JSON.parse(localStorage.getItem('currentAccount')).currentAccount;
           return this.router.navigate(['dashboard']);
         }
 
@@ -103,7 +105,9 @@ export class AuthService {
           if (res.accessToken && res.user) {
             this.store('app_token', res.accessToken);
             this.store('user', res.user);
+            this.store('currentAccount', res.accounts[0].id);
             this.user = res.user;
+            this.currentAccount = res.accounts[0].id;
             this.loggedIn.next(true);
             return res;
           }
@@ -129,11 +133,17 @@ export class AuthService {
       });
   }
 
-  signOut(): void {
+  signOut(error?: any): void {
+    if (error) {
+      console.log(error);
+    }
+
     this.authService.signOut();
 
     localStorage.clear();
     this.user = null;
+    this.token = null;
+    this.currentAccount = null;
     this.loggedIn.next(false);
   }
 
@@ -151,7 +161,9 @@ export class AuthService {
         if (res.accessToken && res.user) {
           this.store('app_token', res.accessToken);
           this.store('user', res.user);
+          this.store('currentAccount', res.accounts[0].id);
           this.user = res.user;
+          this.currentAccount = res.accounts[0].id;
           this.loggedIn.next(true);
         }
       });

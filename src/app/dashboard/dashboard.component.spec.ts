@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthService } from '@core';
+import { AuthService, AccountService} from '@core';
 import { DashboardComponent } from './dashboard.component';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,6 +9,7 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>;
 
   class AuthServiceMock {}
+  class AccountServiceMock {}
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,6 +21,7 @@ describe('DashboardComponent', () => {
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceMock },
+        { provide: AccountService, useClass: AccountServiceMock },
       ],
     })
     .compileComponents();

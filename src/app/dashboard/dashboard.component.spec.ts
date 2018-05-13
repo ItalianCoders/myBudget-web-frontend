@@ -1,23 +1,34 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthService, AccountService} from '@core';
+import { AuthService, AccountService } from '@core';
 import { DashboardComponent } from './dashboard.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
+  class AccountServiceMock {
+    public getAccountDetails(accountId: string): Observable<any> {
+      const mockAccount = {};
+
+      return Observable.create(observer => {
+        if (accountId) {
+          observer.next(mockAccount);
+          return observer.complete();
+        }
+
+        observer.console.error();
+      });
+    }
+  }
+
   class AuthServiceMock {}
-  class AccountServiceMock {}
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         DashboardComponent,
-      ],
-      imports: [
-        TranslateModule.forRoot(),
       ],
       providers: [
         { provide: AuthService, useClass: AuthServiceMock },

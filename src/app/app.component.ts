@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthService } from '@core';
-import { LanguageService } from '@app/core/language.service';
+import { AuthService, LanguageService } from '@core';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +9,22 @@ import { LanguageService } from '@app/core/language.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'myBudget';
-  isLoggedIn$: Observable<boolean>;
+  public title: string;
+  public isLoggedIn$: Observable<boolean>;
 
   constructor(
     private authService: AuthService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
   ) {
+    this.title = 'myBudget';
     this.languageService.init();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn;
   }
 
-  logOut(): void {
+  public logOut(): void {
     this.authService.signOut();
   }
 }

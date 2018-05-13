@@ -8,8 +8,6 @@ import {
   MatProgressSpinnerModule,
 } from '@angular/material';
 
-import { MatIconRegistry } from '@angular/material/icon';
-
 export const MATERIAL_MODULES = [
   MatToolbarModule,
   MatFormFieldModule,

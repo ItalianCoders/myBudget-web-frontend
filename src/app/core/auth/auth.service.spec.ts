@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SocialService } from './socialModule';
-
-import { AuthService, AuthConfig, AuthTokenConfig } from './auth.service';
 import { TranslateModule } from '@ngx-translate/core';
+
+import { SocialService } from '../socialModule';
+import { AuthService, AuthConfig, AuthTokenConfig } from './auth.service';
 
 describe('AuthService', () => {
   let service: AuthService;

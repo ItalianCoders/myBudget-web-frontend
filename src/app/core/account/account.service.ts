@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthService, User } from '../../auth.service';
+import { AuthService, User, Account } from '../auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -28,8 +28,8 @@ export interface AccountDetails extends Account {
   expenseCategoriesAvailable: Array<Category>;
   totalMonthlyIncoming: number;
   totalMonthlyExpense: number;
-  incomingOverviewMovement: Map<string, number>;
-  expenseOverviewMovement: Map<string, number>;
+  incomingOverviewMovement: any;
+  expenseOverviewMovement: any;
   lastMovements: Array<Movement>;
   members: Array<User>;
   administrators: Array<String>;

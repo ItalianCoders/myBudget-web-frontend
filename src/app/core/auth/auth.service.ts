@@ -1,14 +1,15 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import {
   SocialService,
   FacebookLoginProvider,
   GoogleLoginProvider,
   SocialUser,
-} from './socialModule';
-import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+} from '../socialModule';
 
 export const AuthConfig = new InjectionToken<AuthTokenConfig>('AuthTokenConfig');
 

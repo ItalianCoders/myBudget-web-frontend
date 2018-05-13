@@ -1,5 +1,19 @@
-export { AuthGuard } from './auth.guard';
-export * from './auth.service';
-export * from './service/account/account.service';
+export {
+  AuthService,
+  AuthConfig,
+  AuthTokenConfig,
+  User,
+  Account,
+  LoginResponse,
+  SocialType,
+} from './auth';
+export {
+  AccountService,
+  Category,
+  Movement,
+  AccountDetails,
+} from './account';
+export { AuthGuard } from './guard';
+export { LanguageService } from './language';
 export { ServiceConfigProviders, SocialUser } from './socialModule';
 export { CoreModule } from './core.module';

@@ -2,11 +2,11 @@ import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth';
 import { AuthGuard } from './auth.guard';
-import { TranslateModule } from '@ngx-translate/core';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;

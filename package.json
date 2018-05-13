@@ -6,10 +6,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "test": "ng test --watch=true --code-coverage",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ci-test": "ng test --code-coverage",
+    "ci-test": "ng test --watch=false",
     "release": "git add . && standard-version -a"
   },
   "private": true,

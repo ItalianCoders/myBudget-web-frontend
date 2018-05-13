@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormControl,
   FormGroup,
   FormBuilder,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, SocialUser, LoginResponse } from '@core';
-import { LanguageService } from '@app/core/language.service';
+import { AuthService, LoginResponse } from '@core';
 
 @Component({
   selector: 'app-login',
@@ -31,18 +29,11 @@ export class LoginComponent implements OnInit {
     this.loginForm.valueChanges.subscribe(res => this.loginError = false);
   }
 
-  private createForm() {
-    this.loginForm = this.fb.group({
-      username: ['', [ Validators.required, Validators.minLength(4) ] ],
-      password: ['', [ Validators.required, Validators.minLength(4) ] ],
-    });
-  }
-
-  onRegister(): void {
+  public onRegister(): void {
     this.router.navigate(['/register']);
   }
 
-  signInWithEmail(user: FormGroup): void {
+  public signInWithEmail(user: FormGroup): void {
     if (this.loginForm.invalid) {
       return;
     }
@@ -61,15 +52,15 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  signInWithGoogle(): void {
+  public signInWithGoogle(): void {
     this.authService.signInWithGoogle();
   }
 
-  signInWithFB(): void {
+  public signInWithFB(): void {
     this.authService.signInWithFB();
   }
 
-  signOut(): void {
+  public signOut(): void {
     this.authService.signOut();
   }
 
@@ -83,5 +74,16 @@ export class LoginComponent implements OnInit {
     this.loginForm.enable();
     this.submitting = false;
     this.loginError = true;
+  }
+
+  private createForm() {
+    this.loginForm = this.fb.group({
+      username: [
+        '', [ Validators.required, Validators.minLength(4) ]
+      ],
+      password: [
+        '', [ Validators.required, Validators.minLength(4) ]
+      ],
+    });
   }
 }

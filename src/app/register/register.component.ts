@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormControl,
   FormGroup,
   FormBuilder,
   Validators
@@ -25,20 +24,11 @@ export class RegisterComponent implements OnInit {
     this.createForm();
   }
 
-  private createForm() {
-    this.registerForm = this.fb.group({
-      username: ['', [ Validators.required, Validators.minLength(4) ] ],
-      password: ['', [ Validators.required, Validators.minLength(4) ] ],
-      passwordConfirm: ['', [ Validators.required, Validators.minLength(4) ] ],
-      email: ['', [ Validators.required, Validators.email ] ],
-    });
-  }
-
-  onSignIn(): void {
+  public onSignIn(): void {
     this.router.navigate(['/login']);
   }
 
-  signInWithEmail(user: FormGroup): void {
+  public signInWithEmail(user: FormGroup): void {
     if (this.registerForm.invalid) {
       return;
     }
@@ -50,5 +40,22 @@ export class RegisterComponent implements OnInit {
 
     this.authService.signInWithEmail(username, password)
       .subscribe(res => this.registerForm.reset());
+  }
+
+  private createForm() {
+    this.registerForm = this.fb.group({
+      username: [
+        '', [ Validators.required, Validators.minLength(4) ]
+      ],
+      password: [
+        '', [ Validators.required, Validators.minLength(4) ]
+      ],
+      passwordConfirm: [
+        '', [ Validators.required, Validators.minLength(4) ]
+      ],
+      email: [
+        '', [ Validators.required, Validators.email ]
+      ],
+    });
   }
 }

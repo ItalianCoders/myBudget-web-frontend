@@ -74,7 +74,7 @@ export class AuthService {
           this.user = JSON.parse(localStorage.getItem('user')).user;
           this.token = JSON.parse(localStorage.getItem('app_token'))['app_token'];
           this.currentAccount = JSON.parse(localStorage.getItem('currentAccount')).currentAccount;
-          return this.router.navigate(['dashboard']);
+          return;
         }
 
         this.router.navigate(['login']);
@@ -110,6 +110,7 @@ export class AuthService {
             this.user = res.user;
             this.currentAccount = res.accounts[0].id;
             this.loggedIn.next(true);
+            this.router.navigate(['home']);
             return res;
           }
 
@@ -121,7 +122,6 @@ export class AuthService {
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((res: SocialUser) => {
-        console.log(res);
         this.signIn(res, SocialType.Google);
       });
   }
@@ -129,7 +129,6 @@ export class AuthService {
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
       .then((res: SocialUser) => {
-        console.log(res);
         this.signIn(res, SocialType.Facebook);
       });
   }
@@ -165,6 +164,7 @@ export class AuthService {
           this.store('currentAccount', res.accounts[0].id);
           this.user = res.user;
           this.currentAccount = res.accounts[0].id;
+          this.router.navigate(['home']);
           this.loggedIn.next(true);
         }
       });

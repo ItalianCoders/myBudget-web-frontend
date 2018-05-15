@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DummyComponent } from './dummy/dummy.component';
 
 const authTokenConfig: AuthTokenConfig = {
   ApiUrl: environment.ApiUrl,
@@ -23,6 +24,7 @@ const authTokenConfig: AuthTokenConfig = {
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
+    DummyComponent,
   ],
   imports: [
     BrowserModule,

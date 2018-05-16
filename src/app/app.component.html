@@ -10,16 +10,16 @@
 
     <mat-nav-list>
       <label> Account </label>
-      <a mat-list-item (click)="drawer.close()" routerLink="new-account">New</a>
-      <a mat-list-item (click)="drawer.close()" routerLink="edit-account">Edit</a>
-      <a mat-list-item (click)="drawer.close()" routerLink="invite-users-account">Invite an User</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/new-account">New</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/edit-account">Edit</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/invite-users-account">Invite an User</a>
       <mat-divider></mat-divider>
       <label> Movimenti </label>
-      <a mat-list-item (click)="drawer.close()" routerLink="movements">Find</a>
-      <a mat-list-item (click)="drawer.close()" routerLink="scheduled-movements">Scheduled</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/movements">Find</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/scheduled-movements">Scheduled</a>
     <mat-divider></mat-divider>
-      <a mat-list-item (click)="drawer.close()" routerLink="budgets">Budget</a>
-      <a mat-list-item (click)="drawer.close()" routerLink="settings">Settings</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/budgets">Budget</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/settings">Settings</a>
       <a mat-list-item (click)="logOut()">Log out</a>
     </mat-nav-list>
 

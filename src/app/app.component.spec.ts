@@ -3,7 +3,6 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
 import { AuthService } from '@core';
 import { AppComponent } from '@app/app.component';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 
 describe('AppComponent', () => {
@@ -20,9 +19,6 @@ describe('AppComponent', () => {
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
-      ],
-      imports: [
-        TranslateModule.forRoot(),
       ],
       providers: [
         {provide: AuthService, useValue: AuthServiceStub },

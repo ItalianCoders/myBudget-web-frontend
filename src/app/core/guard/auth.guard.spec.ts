@@ -2,7 +2,6 @@ import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule } from '@ngx-translate/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { AuthService } from '../auth';
@@ -44,7 +43,6 @@ describe('AuthGuard', () => {
         LoginComponent,
       ],
       imports: [
-        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'login', component: LoginComponent },

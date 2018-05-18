@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { SocialService } from '../socialModule';
 import { AuthService, AuthConfig, AuthTokenConfig } from './auth.service';
@@ -46,7 +45,6 @@ describe('AuthService', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'login', component: LoginComponent },

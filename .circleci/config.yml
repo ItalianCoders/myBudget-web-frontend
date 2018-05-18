@@ -89,7 +89,7 @@ jobs:
       # Build the project with AngularCLI
       - run:
           name: Build project
-          command: npm run build
+          command: npm run build:it
 
       # Cache the dist folder for the deploy job
       - save_cache:
@@ -123,7 +123,7 @@ jobs:
       # Deploy to S3
       - run:
           name: Deploy
-          command: aws s3 sync dist/ s3://www.mubudget.tk/ --region eu-west-1 --delete
+          command: aws s3 sync dist/my-budget-it s3://www.mubudget.tk/ --region eu-west-1 --delete
 
 
 workflows:

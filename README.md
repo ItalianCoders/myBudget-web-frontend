@@ -1,33 +1,83 @@
 # MyBudget Web
 
-> App running live at [www.mubudget.tk](http://www.mubudget.tk/)
-
 [![CircleCI](https://circleci.com/gh/ItalianCoders/myBudget-web-frontend.svg?style=svg)](https://circleci.com/gh/ItalianCoders/myBudget-web-frontend)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.
+## Table of contents
 
-## Development server
+- [MyBudget Web](#mybudget-web)
+  - [Table of contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [Usage](#usage)
+    - [Serving the app](#serving-the-app)
+    - [Unit teststing](#unit-teststing)
+    - [Building a distribution version](#building-a-distribution-version)
+  - [Infrostructure](#infrostructure)
+    - [Initialize Terraform](#initialize-terraform)
+    - [Plan your Terraform changes](#plan-your-terraform-changes)
+    - [Apply your Terraform changes](#apply-your-terraform-changes)
+  - [Deploy S3](#deploy-s3)
+  - [Contributing](#contributing)
+  - [License](#license)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting Started
 
-## Code scaffolding
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Prerequisites
 
-## Build
+This project requires NodeJS (at least version 8) and NPM.
+[Node](http://nodejs.org/) and [NPM](https://npmjs.org/) are really easy to install.
+To make sure you have them available on your machine,
+try running the following command.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```sh
+$ node --version
+v10.1.0
 
-## Running unit tests
+$ npm --version
+6.0.1
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation
 
-## Running end-to-end tests
+Start with cloning this repo on your local machine:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```sh
+$ git clone git@github.com:ItalianCoders/myBudget-web-frontend.git
+$ cd myBudget-web-frontend
+```
 
-## Creating infrostructure
+Then install all the Node dependencies usin npm or Yarn
+
+```sh
+$ npm install
+# Or using Yarn for a faster installation
+$ yarn
+```
+
+## Usage
+
+### Serving the app
+
+```sh
+$ npm start
+```
+
+### Unit teststing
+
+```sh
+$ npm test
+```
+
+### Building a distribution version
+
+```sh
+$ npm run build
+```
+
+## Infrostructure
 
 This project uses Terraform to create a `mubudget.com` S3 bucket into your AWS account.
 Make sure you have your AWS credentials available in your machine and Terraform installed.
@@ -59,3 +109,21 @@ $ make deploy
 
 This will build a new distribution version of the project and sync the `dist/`
 folder with the S3 bucket.
+
+This task will create a distribution version of the project
+inside your local `dist/my-budget-it` folder
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+1.  Fork it!
+1.  Create your feature branch: `git checkout -b my-new-feature`
+1.  Add your changes: `git add .`
+1.  Commit your changes: `git commit -am 'Add some feature'`
+1.  Push to the branch: `git push origin my-new-feature`
+1.  Submit a pull request :sunglasses:
+
+## License
+
+[MIT License](https://github.com/ItalianCoders/italiancoders.github.io/blob/master/LICENSE) © ItalianCoders

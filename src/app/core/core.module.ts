@@ -1,20 +1,20 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { environment } from '@env';
 
 import { AuthGuard } from './guard';
-import { AuthService, AuthConfig, AuthTokenConfig } from './auth';
+import { AuthService, AuthTokenConfig, AuthConfig } from './auth';
 import { SocialLoginModule, SocialService } from './socialModule';
 import { TokenInterceptorService } from './token-interceptor';
 import { AccountService } from './account';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
+    HttpClientModule,
     SocialLoginModule.forRoot(environment.socialConfig),
-  ],
-  exports: [
-    SocialLoginModule,
   ],
 })
 export class CoreModule {

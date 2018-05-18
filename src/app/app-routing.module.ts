@@ -3,23 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '@core';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DummyComponent } from './dummy/dummy.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', canActivateChild: [AuthGuard], children: [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'movements', component: DummyComponent },
-    { path: 'scheduled-movements', component: DummyComponent },
-    { path: 'new-account', component: DummyComponent },
-    { path: 'edit-account', component: DummyComponent },
-    { path: 'invite-users-account', component: DummyComponent },
-    { path: 'budgets', component: DummyComponent },
-    { path: 'settings', component: DummyComponent },
-  ]},
+  {
+    path: 'login',
+    loadChildren: './authentication/authentication.module#AuthenticationModule',
+  },
+  {
+    path: 'home',
+    canActivateChild: [AuthGuard],
+    loadChildren: './admin/admin.module#AdminModule',
+  },
   { path: '**', component: NotFoundComponent },
 ];
 @NgModule({

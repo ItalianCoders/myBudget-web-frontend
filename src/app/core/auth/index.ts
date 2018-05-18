@@ -1,9 +1,1 @@
-export {
-  AuthService,
-  AuthConfig,
-  AuthTokenConfig,
-  User,
-  Account,
-  LoginResponse,
-  SocialType,
-} from './auth.service';
+export * from './auth.service';

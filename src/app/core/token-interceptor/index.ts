@@ -1,1 +1,1 @@
-export { TokenInterceptorService } from './token-interceptor.service';
+export * from './token-interceptor.service';

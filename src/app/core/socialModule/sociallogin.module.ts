@@ -4,15 +4,10 @@ import {
   SkipSelf,
   ModuleWithProviders
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { SocialService, ConfigToken, ServiceConfigProviders } from './auth.service';
 
-@NgModule({
-  imports: [
-    CommonModule
-  ],
-})
+@NgModule({})
 export class SocialLoginModule {
   constructor(@Optional() @SkipSelf() parentModule: SocialLoginModule) {
     if (parentModule) {

@@ -1,5 +1,5 @@
 export * from './auth';
 export * from './account';
 export * from './socialModule';
-export { AuthGuard } from './guard';
-export { CoreModule } from './core.module';
+export * from './guard';
+export * from './core.module';

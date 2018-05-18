@@ -5,7 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "serve:en": "npm start",
+    "serve:it": "npm start -- -c it",
     "build": "ng build --prod",
+    "build:en": "npm run build",
+    "build:it": "npm run build -- -c production-it",
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",

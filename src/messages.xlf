@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="f093d9574ab746b231504bd2cbb65f04bd7b00db" datatype="html">
+        <source>Log In</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d1fd27ddc287db23c8c4a3a32e2242f828a1b3e3" datatype="html">
+        <source>Min 4 characters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2d817aa5e87a561eba6c0d9e8d5a9fb48b128f2d" datatype="html">
+        <source>Username or password wrong</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
+        <source>Register</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dcd47f4d6b26b045a1b041b2fc73123bc0cfc118" datatype="html">
+        <source>Log In</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63f5d0ec23e3cf4abf6d5221107633c90d8d4a15" datatype="html">
+        <source>OR</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d745a22ae7b825b146ca8185126c482597f1d485" datatype="html">
+        <source>Sign in with Google</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d8481bd4a0167d5a1afd9d4c9d01a1439bb73bd" datatype="html">
+        <source>Sign in with Facebook</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/authentication/login/login.component.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

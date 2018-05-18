@@ -3,7 +3,7 @@
   <img width="200" class="login-logo" alt="myBudget Logo" src="assets/save.svg"/>
 
   <mat-card-title>
-    <span class="mobile">Log in</span>
+    <span i18n class="mobile">Log In</span>
   </mat-card-title>
 
   <mat-card-content>
@@ -13,7 +13,7 @@
         <input matInput type="text" placeholder="username" formControlName="username">
         <mat-icon matPrefix class="icon">account_circle</mat-icon>
         <mat-error *ngIf="loginForm.get('username')?.invalid && !!loginForm.get('username').value">
-          Min 4 characters
+          <span i18n>Min 4 characters</span>
         </mat-error>
       </mat-form-field>
 
@@ -21,23 +21,23 @@
         <input matInput type="password" placeholder="password" formControlName="password">
         <mat-icon matPrefix class="icon">lock</mat-icon>
         <mat-error *ngIf="loginForm.get('password')?.invalid && !!loginForm.get('password').value">
-          Min 4 characters
+          <span i18n>Min 4 characters</span>
         </mat-error>
       </mat-form-field>
 
       <mat-card-actions class="card-actions">
         <mat-error *ngIf="loginError" class="login-error">
-          {{ 'LOGIN.ERROR.LOGIN' | translate }}
+          <span i18n>Username or password wrong</span>
         </mat-error>
 
         <div class="flex-row flex-justify-content--center flex-align-items--center">
           <button type="button" mat-raised-button color="accent" class="btn signin-button" (click)="onRegister()">
-            {{ 'BUTTONS.REGISTER' | translate }}
+            <span i18n>Register</span>
           </button>
 
           <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.pristine || loginForm.invalid || submitting" class="btn signin-button">
             <span *ngIf="!submitting">
-              {{ 'BUTTONS.LOGIN' | translate }}
+              <span i18n>Log In</span>
             </span>
             <mat-spinner *ngIf="submitting" diameter="20"></mat-spinner>
           </button>
@@ -45,7 +45,7 @@
 
         <!-- SOCIAL LOGIN SEPARATOR -->
         <div class="separator">
-          <span class="separator-text">OR</span>
+          <span i18n class="separator-text">OR</span>
         </div>
 
         <!-- SOCIAL LOGIN -->
@@ -57,9 +57,7 @@
                 <img src="assets/img/btn_google_light.png" alt="Google logo">
               </div>
               <div class="label">
-                <span>
-                  {{ 'LOGIN.GOOGLE' | translate }}
-                </span>
+                <span i18n>Sign in with Google</span>
               </div>
             </div>
           </button>
@@ -71,9 +69,7 @@
                 <img src="assets/img/facebook-logo.png" alt="Facebook logo">
               </div>
               <div class="label label-facebook">
-                <span>
-                  {{ 'LOGIN.FACEBOOK' | translate }}
-                </span>
+                <span i18n>Sign in with Facebook</span>
               </div>
             </div>
           </button>

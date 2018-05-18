@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material';
 import { Observable } from 'rxjs';
 
-import { AuthService, LanguageService } from '@core';
-import { MatSidenav } from '@shared';
+import { AuthService } from '@core';
+
 
 @Component({
   selector: 'app-root',
@@ -20,12 +21,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private languageService: LanguageService,
     private breakpointObserver: BreakpointObserver,
   ) {
     this.title = 'myBudget';
     this.isHandset = this.breakpointObserver.observe(Breakpoints.Handset);
-    this.languageService.init();
   }
 
   public ngOnInit(): void {

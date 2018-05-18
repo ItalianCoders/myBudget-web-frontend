@@ -21,6 +21,3 @@ export const MATERIAL_MODULES = [
   MatSidenavModule,
   MatListModule,
 ];
-
-export { MatIconRegistry } from '@angular/material/icon';
-export { MatSidenav } from '@angular/material/sidenav';
